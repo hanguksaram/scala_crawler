@@ -19,8 +19,11 @@ object Utils {
     }
   }
   //костыль для рабочего рековера стримовых футуров
-  def getStream(stream: InputStream): Either[Error, InputStream] = {
-    if (stream != null) Right(stream) else Left(Error("someerror"))
+  def getStream(stream: AnyRef): Either[Error, InputStream] = {
+    stream match {
+      case stream: InputStream => Right(stream)
+      case error: Throwable => Left(Error(error.getMessage))
+    }
   }
 
 }
