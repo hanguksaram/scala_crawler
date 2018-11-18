@@ -15,7 +15,7 @@ object Utils {
       readResult
     }
     finally {
-//        readResult.onComplete(_ => reader.close())
+      readResult.onComplete(_ => reader.close())
     }
   }
   //костыль для рабочего рековера стримовых футуров

@@ -22,8 +22,7 @@ class Crawler(requestTimeout: Int) {
           yield
             for {
               result <- siteRequest
-              handledStream <- Utils.handleStream[Future[Option[String]]](result._2, Parser.parseSiteName)
-              siteName <- handledStream
+              siteName <- Utils.handleStream[Option[String]](result._2, Parser.parseSiteName)
             } yield (result._1.toUrl, siteName.getOrElse("site name not found"))
       val results =
         for (names <- Future.sequence(res))

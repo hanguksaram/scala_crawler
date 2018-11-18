@@ -28,7 +28,7 @@ object Parser {
       case Left(_) => (None, Option(Error("bad json structure")))
     }
   }
-  def parseSiteName(reader: BufferedReader): Future[Option[String]] = Future {
+  def parseSiteName(reader: BufferedReader) =  {
     @tailrec def parseSiteNameUtil(): Option[String] = {
       val line = reader.readLine()
       line match {
